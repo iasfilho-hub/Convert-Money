@@ -4,7 +4,7 @@ const currencySelectConvert = document.querySelector(".valor-a-converter")
 const inputCurrencyValue = document.querySelector(".input-currency").value
 
 
-function convertValues() {
+const convertValues = async () => {
     const inputCurrencyValue = document.querySelector(".input-currency").value
     const currencyValueToConvert = document.querySelector(".currency-value-to-convert")
     const currencyValueConverted = document.querySelector(".currency-value")
@@ -12,27 +12,32 @@ function convertValues() {
     const currencySelectConvert = document.querySelector(".valor-a-converter")
 
 
-    /* var real */
-    const dolar = 5.2
-    const euro = 6.2
-    const libra = 7.17
+    const data = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,GBP-BRL,BRL-USD,EUR-USD,GBP-USD,BRL-EUR,GBP-EUR,USD-EUR,EUR-GBP,BRL-GBP,USD-GBP").then(response => response.json())
 
-    /* var dolar */
-    const deuro = 1.17
-    const dlibra = 1.34
-    const dreal = 0.18
 
-    /* var euro */
-    const edolar = 0.85
-    const elibra = 1.15
-    const ereal = 0.16
+    console.log(data)
+    /* var real*/
+    const dolar = data.USDBRL.high
+    const euro = data.EURBRL.high
+    const libra = data.GBPBRL.high
 
-    /* var libra */
-    const ldolar = 0.74
-    const leuro = 0.87
-    const lreal = 0.14
+    /* var dolar*/
+    const deuro = data.EURUSD.high
+    const dlibra = data.GBPUSD.high
+    const dreal = data.BRLUSD.high
 
-    
+    /*var euro*/
+    const edolar = data.USDEUR.high 
+    const elibra = data.GBPEUR.high
+    const ereal = data.BRLEUR.high
+
+    /* var libra*/
+    const ldolar = data.USDGBP.high
+    const leuro = data.EURGBP.high
+    const lreal = data.BRLGBP.high
+
+
+
     /* Alerta de Erro */
     if (currencySelectConvert.value == currencySelect.value) {
         alert("Não é possível converter para a mesma moeda. Altere o valor!")
@@ -139,7 +144,7 @@ function convertValues() {
             style: "currency",
             currency: "EUR"
         }).format(inputCurrencyValue)
-    }        
+    }
 
     /* Valor Libra */
     if (currencySelectConvert.value == "libra") {
@@ -172,7 +177,7 @@ function convertValues() {
             style: "currency",
             currency: "GBP"
         }).format(inputCurrencyValue)
-        
+
     }
 }
 
