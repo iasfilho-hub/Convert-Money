@@ -12,10 +12,9 @@ const convertValues = async () => {
     const currencySelectConvert = document.querySelector(".valor-a-converter")
 
 
-    const data = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,GBP-BRL,BRL-USD,EUR-USD,GBP-USD,BRL-EUR,GBP-EUR,USD-EUR,EUR-GBP,BRL-GBP,USD-GBP").then(response => response.json())
+    const data = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,GBP-BRL,BRL-USD,EUR-USD,GBP-USD,BRL-EUR,GBP-EUR,USD-EUR,EUR-GBP,BRL-GBP,USD-GBP?token=b832fddd310446e3b90e8f9a519e99c4574700a16ce2dc69ffdd3808f3de31ff").then(response => response.json())
 
 
-    console.log(data)
     /* var real*/
     const dolar = data.USDBRL.high
     const euro = data.EURBRL.high
